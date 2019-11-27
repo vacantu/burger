@@ -1,13 +1,13 @@
 {
-  "name": "burger_new",
+  "name": "burger",
   "version": "1.0.0",
-  "description": "",
+  "description": "HW",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "vcantu",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
