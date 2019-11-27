@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+  <div id="burger">
+    <img class="mx-auto d-block" src="./assets/img/burger.jpg" style="height:450px; align:center;">
+  </div>
+  <h1 id="title" class="text-center">Eat-Da-Burger!</h1>
+  <div class="row">
+    <div id="new_burgers" class="col md-4">
+      <h2>New Burgers</h2>
+      <ul>
+        {{#each burgers}}
+          {{#unless devoured}}
+            {{> burgers/burger-block devoured=false}}
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col md-4">
+      <h2>Add a Burger</h2>
+      <form id="create-form">
+        <input type="text" id="burger_name" name="inputBurger">
+        <button type="submit">Add Burger</button>
+      </form>
+    </div>
+    <div id="devoured" class="col md-4">
+        <h2>Devoured Burgers</h2>
+        <ul>
+          {{#each burgers}}
+            {{#if devoured}}
+              {{> burgers/burger-block devoured=true}}
+            {{/if}}
+          {{/each}}
+        </ul>
+    </div>
+</div>
+
+
