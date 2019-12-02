@@ -11,34 +11,21 @@ router.get("/", function(req, res) {
     var hbsObject = {
       burgers: data
     };
-    console.log("burgerController: ",hbsObject);
+    //  console.log("burgerController: ",hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-router.post("/api/burger", function(req, res) {
-  console.log("REQ: ",req);
-  console.log("RES: ",res);
-  burger.create([
-    "burger_name", "devoured"
-  ], [
-    req.body.inputName, 0  // devoured set to false when created
-  ], function(result) {
-    // Send back the ID of the new burger
-    res.json({ id: result.insertId });
-  });
-});
+router.post("/", function(req, res) {
+    burger.create(req.body.newBurger, function(data) {
+    res.redirect("/")
+  })
+})
 
-router.put("/api/burgers/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  burger.update({
-    devoured: req.body.devoured
-  }, condition, function(result) {
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
+router.put("/api/burger/:id", function(req, res) {
+  burger.update("devoured", req.body.devoured, "id", req.params.id, function(data)
+  {
+    if (data.changedRows == 0) {
       return res.status(404).end();
     } else {
       res.status(200).end();
